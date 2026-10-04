@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "MINAARA", "slug": "minaara", "version": "0.1.0",
+    "orientation": "portrait", "scheme": "minaara", "userInterfaceStyle": "automatic",
+    "icon": "./assets/brand/icon.png",
+    "ios": { "supportsTablet": true },
+    "android": { "adaptiveIcon": { "foregroundImage": "./assets/brand/mark.png", "backgroundColor": "#FAFAF8" } },
+    "web": { "output": "single", "favicon": "./assets/brand/icon.png", "name": "MINAARA" },
+    "plugins": ["expo-router", "expo-secure-store", ["expo-splash-screen", { "backgroundColor": "#FAFAF8", "dark": { "backgroundColor": "#211F23" } }]]
+  }
+}
