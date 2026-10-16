@@ -8,6 +8,8 @@ import { useFonts } from 'expo-font';
 import { Outfit_400Regular } from '@expo-google-fonts/outfit/400Regular';
 import { Outfit_500Medium } from '@expo-google-fonts/outfit/500Medium';
 import { Outfit_600SemiBold } from '@expo-google-fonts/outfit/600SemiBold';
+import { CormorantGaramond_500Medium } from '@expo-google-fonts/cormorant-garamond/500Medium';
+import { Cinzel_500Medium } from '@expo-google-fonts/cinzel/500Medium';
 import { useEffect } from 'react';
 import { useInitializeSession, useSession } from '@/session';
 import { usePreferences } from '@/store';
@@ -18,7 +20,7 @@ import { ErrorState, Page } from '@/ui';
 void SplashScreen.preventAutoHideAsync();
 export const unstable_settings = { initialRouteName: '(tabs)' };
 export default function Layout() {
-  const [loaded, fontError] = useFonts({ Outfit_400Regular, Outfit_500Medium, Outfit_600SemiBold });
+  const [loaded, fontError] = useFonts({ Outfit_400Regular, Outfit_500Medium, Outfit_600SemiBold, CormorantGaramond_500Medium, Cinzel_500Medium });
   useInitializeSession();
   const ready = useSession(s => s.ready); const session = useSession(s => s.session);
   const authPending = useSession(s => s.authPending);

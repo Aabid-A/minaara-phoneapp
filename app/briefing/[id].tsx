@@ -16,7 +16,7 @@ export default function Briefing() {
   return <Page>
     <Stack.Screen options={{ headerRight: () => <IconButton name={saved ? 'check' : 'bookmark'} label={saved ? 'Remove saved briefing' : 'Save briefing'} onPress={() => { toggle(id); tick(); }} /> }} />
     {error ? <ErrorState message={error.message} retry={() => void refetch()} /> : !data ? <LoadingStudy /> : !block ? <ErrorState message="This briefing is not available in your study space." /> : <>
-      <View style={{ gap: 16 }}><T variant="label" color={t.accent}>AL-FATIHAH · BRIEFING</T><T variant="display">{block.section_title}</T>{block.ayah_range && <T variant="small" color={t.muted}>Study scope · Ayat {block.ayah_range}</T>}</View>
+      <View style={{ gap: 16 }}><T variant="display">{block.section_title}</T><T variant="small" color={t.accent}>Al-Fatihah · Briefing</T>{block.ayah_range && <T variant="small" color={t.muted}>Study scope · Ayat {block.ayah_range}</T>}</View>
       {isPreview && <Notice>Existing development content, not editorially approved. This is a study summary, not Quran text.</Notice>}
       <T selectable style={{ fontSize: 20, lineHeight: 32 }}>{block.content}</T>
       <View>
