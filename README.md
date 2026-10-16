@@ -60,19 +60,28 @@ progress, and is never silently uploaded when signing in. Saved briefings and
 the last-opened briefing are device-local, including in account mode. Authenticated
 offline caching across restarts is not implemented.
 
-Review uses a snapshot of the question set, records card/MCQ answers, and reuses
-the web app’s BKT and scheduling logic. Writes use a stable attempt UUID and
-retryable metric payload; errors do not pretend a save succeeded. The existing
-two-table write pattern is not transactional: simultaneous review on multiple
-devices can race. Before production, move attempt + metric updates into a
-server-side atomic transaction and test concurrent sessions.
+Signed-in practice uses the same authenticated Supabase RPC as the web. Stored
+questions determine grading; attempt, BKT, scheduling and activity commit
+atomically with stable attempt IDs for retries. Account-scoped pending requests
+are persisted/read back before send and recovered at the next practice entry.
+The backend practice gate starts closed; guest preview remains local. Guest preview alone uses local
+BKT/scheduling. The required migration is implemented but not deployed; live
+Auth/PostgREST and native-device verification remain release gates. See
+[the account submission notes](docs/practice-submission.md).
 
 ## Brand and content
 
-The Lanterned Margin: warm ivory, burgundy, charcoal, Outfit, restrained reading
-surfaces, and a fine curved thread. Cards use radius 20, controls 12, circular
-nodes/pills; spacing follows a 4-point grid. No stock imagery or invented logo.
-Outfit’s three used weights are packaged TTF files, not network fonts.
+The Lanterned Margin follows the authenticated web app: chalk, garnet and
+charcoal; Outfit for reading/controls, Cormorant Garamond for display headings,
+and Cinzel for the MINAARA wordmark. Reading cards and controls use radius 12,
+with circular nodes/pills and a 4-point spacing grid. Home uses the existing
+minaret rather than a separate decorative thread. The existing dark adaptation
+is retained. `src/design-tokens.ts` owns native roles and derives light tints
+from the generated palette. Fonts are packaged TTF files, not network fonts.
+
+The 15 October alignment plan and verification boundaries are recorded in
+[`docs/mobile-alignment-plan.md`](docs/mobile-alignment-plan.md). That visual
+pass does not change queue selection, submissions, content or sync behavior.
 
 `npm run brand:sync` mechanically snapshots the sibling web repo’s palette,
 existing minaret vector, existing social PNGs, and pure learning-engine files.
