@@ -13,7 +13,9 @@
     "build:web": "expo export --platform web",
     "brand:sync": "node scripts/sync-brand.mjs",
     "preview:sync": "node scripts/sync-preview.mjs",
-    "backend:configure": "node scripts/configure-backend.mjs"
+    "backend:configure": "node scripts/configure-backend.mjs",
+    "contract:sync": "node scripts/sync-practice-contract.mjs",
+    "contract:check": "node scripts/sync-practice-contract.mjs --check"
   },
   "dependencies": {
     "@expo-google-fonts/cinzel": "^0.4.2",

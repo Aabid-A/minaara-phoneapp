@@ -11,6 +11,7 @@ import { Outfit_600SemiBold } from '@expo-google-fonts/outfit/600SemiBold';
 import { CormorantGaramond_500Medium } from '@expo-google-fonts/cormorant-garamond/500Medium';
 import { Cinzel_500Medium } from '@expo-google-fonts/cinzel/500Medium';
 import { useEffect } from 'react';
+import { AppState, Platform } from 'react-native';
 import { useInitializeSession, useSession } from '@/session';
 import { usePreferences } from '@/store';
 import { queryClient } from '@/data';
@@ -22,6 +23,16 @@ export const unstable_settings = { initialRouteName: '(tabs)' };
 export default function Layout() {
   const [loaded, fontError] = useFonts({ Outfit_400Regular, Outfit_500Medium, Outfit_600SemiBold, CormorantGaramond_500Medium, Cinzel_500Medium });
   useInitializeSession();
+  useEffect(() => {
+    if (Platform.OS === 'web') return;
+    const subscription = AppState.addEventListener('change', state => {
+      if (state === 'active') {
+        void queryClient.invalidateQueries({ queryKey: ['curriculum'] });
+        void queryClient.invalidateQueries({ queryKey: ['practice-gate'] });
+      }
+    });
+    return () => subscription.remove();
+  }, []);
   const ready = useSession(s => s.ready); const session = useSession(s => s.session);
   const authPending = useSession(s => s.authPending);
   const hydrated = usePreferences(s => s.hydrated); const preview = usePreferences(s => s.preview);

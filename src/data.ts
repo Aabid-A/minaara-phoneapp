@@ -3,8 +3,10 @@ import { usePreferences } from './store';
 import { supabase } from './supabase';
 import { useSession } from './session';
 import seed from './generated/preview.json';
-import type { Curriculum, Metric, Question } from './types';
+import type { Curriculum, Question } from './types';
 
+import { pendingAttempts } from './pending-attempt-storage';
+import { submitPracticeAttempt, getPracticeGate, PracticeSubmissionError, type PracticeRequest, requirePracticeIdentity } from './generated/practice-submission';
 import { queryClient } from './query-client';
 export { queryClient } from './query-client';
 export const previewCurriculum: Curriculum = {
@@ -36,20 +38,28 @@ export function useCurriculum() {
   });
   return { ...query, data: userId ? query.data : { ...previewCurriculum, metrics: previewMetrics }, isPreview: !userId };
 }
-// Retryable writes use a stable attempt UUID. Never insert duplicates when a
-// metric write fails. Absolute metrics below also make a same-payload retry safe.
-export async function saveAttempt(input: { attemptId: string; userId: string; question: Question; metric: Metric; correct: boolean; cardRating?: 'know' | 'dont_know'; optionId?: string; elapsed: number; now: string }) {
-  if (!supabase) throw new Error('The account connection is not configured.');
-  const attempt = await supabase.from('user_question_attempts').insert({ id: input.attemptId, user_id: input.userId, question_id: input.question.id, is_correct: input.correct, card_rating: input.cardRating, selected_option_id: input.optionId, time_spent_ms: input.elapsed, created_at: input.now });
-  if (attempt.error && attempt.error.code !== '23505') throw new Error('Your answer was not saved. Check your connection and retry.');
-  const m = input.metric;
-  const metric = await supabase.from('user_concept_metrics').upsert({
-    user_id: input.userId, concept_id: m.concept_id, p_known: m.p_known, p_learn: m.p_learn, p_guess: m.p_guess, p_slip: m.p_slip,
-    attempt_count: m.attempt_count, correct_count: m.correct_count, incorrect_count: m.incorrect_count,
-    mastery_label: m.mastery_status, last_bkt_update_at: input.now, last_attempted_at: input.now,
-    next_review_at: m.next_review_at, interval_days: m.interval_days, streak: m.streak, ease_factor: m.ease_factor,
-    status_tag: !input.correct ? 'incorrect' : m.mastery_status === 'mastered' ? 'mastered' : m.mastery_status === 'strengthening' ? 'seen' : 'learning',
-  }, { onConflict: 'user_id,concept_id' });
-  if (metric.error) throw new Error('Your answer was recorded, but review timing could not be updated. Retry to finish saving.');
-  await queryClient.invalidateQueries({ queryKey: curriculumKey(input.userId) });
+export function usePracticeGate() {
+  const userId = useSession(s => s.session?.user.id);
+  return useQuery({ queryKey: ['practice-gate', userId], enabled: !!userId, staleTime: 0, retry: false,
+    queryFn: async () => {
+      if (!supabase) throw new PracticeSubmissionError('UNAVAILABLE');
+      const { data: { user }, error } = await supabase.auth.getUser();
+      requirePracticeIdentity(user,error,userId);
+      return getPracticeGate(supabase);
+    },
+  });
+}
+// Durable before send; a failed/ambiguous RPC never removes the pending request.
+export async function saveAttempt(input: PracticeRequest) {
+  if (!supabase) throw new PracticeSubmissionError('UNAVAILABLE');
+  const client = supabase;
+  const result = await pendingAttempts.submit(input, async request => {
+    if (useSession.getState().session?.user.id !== request.expectedUserId) throw new PracticeSubmissionError('AUTH');
+    const { data: { user }, error } = await client.auth.getUser();
+    requirePracticeIdentity(user,error,request.expectedUserId);
+    return submitPracticeAttempt(client, request);
+  });
+  if (useSession.getState().session?.user.id !== input.expectedUserId) throw new PracticeSubmissionError('AUTH');
+  void queryClient.invalidateQueries({ queryKey: curriculumKey(input.expectedUserId) });
+  return result;
 }
