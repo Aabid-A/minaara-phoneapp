@@ -1,0 +1,201 @@
+{
+  "provenance": "../minaara-webapp/supabase/migrations/20260419143000_curate_fatihah_active_recall.sql",
+  "curriculum_domains": [
+    {
+      "id": "d0000000-0000-0000-0000-000000000001",
+      "name": "Allah and worship",
+      "description": "Divine identity, lordship, mercy, praise, servitude, sincerity, dependence, du'a, refuge, remembrance, gratitude, and worship."
+    }
+  ],
+  "curriculum_concepts": [
+    {
+      "id": "c1000000-0000-0000-0000-000000000001",
+      "domain_id": "d0000000-0000-0000-0000-000000000001",
+      "surah_id": "surah-1",
+      "primary_statement": "Al-Fatihah frames worship as praise of Allah followed by dependent petition for guidance.",
+      "high_yieldness": 5
+    },
+    {
+      "id": "c1000000-0000-0000-0000-000000000002",
+      "domain_id": "d0000000-0000-0000-0000-000000000001",
+      "surah_id": "surah-1",
+      "primary_statement": "The paired names Ar-Rahman and Ar-Rahim establish that Allah's interaction with creation is fundamentally rooted in both universal, encompassing mercy and specific, enduring mercy.",
+      "high_yieldness": 4
+    },
+    {
+      "id": "c1000000-0000-0000-0000-000000000003",
+      "domain_id": "d0000000-0000-0000-0000-000000000001",
+      "surah_id": "surah-1",
+      "primary_statement": "The straight path is defined through human models of response to guidance: those shown grace, those who earned anger, and those who went astray.",
+      "high_yieldness": 5
+    }
+  ],
+  "textbook_blocks": [
+    {
+      "id": "b1000000-0000-0000-0000-000000000001",
+      "surah_id": "surah-1",
+      "layer": "high_yield",
+      "section_title": "The Core Dynamic of Al-Fatihah",
+      "content": "Al-Fatihah moves from praise to petition. The opening establishes Allah's lordship, mercy, and judgment, then the servant declares exclusive worship and asks for guidance to the straight path.",
+      "ayah_range": "1-7"
+    },
+    {
+      "id": "b1000000-0000-0000-0000-000000000002",
+      "surah_id": "surah-1",
+      "layer": "high_yield",
+      "section_title": "The Dual Nature of Divine Mercy",
+      "content": "Allah introduces Himself through mercy before mentioning His sovereignty over the Day of Judgment. Ar-Rahman points to vast, encompassing mercy, while Ar-Rahim points to specific, enduring mercy.",
+      "ayah_range": "1-3"
+    },
+    {
+      "id": "b1000000-0000-0000-0000-000000000003",
+      "surah_id": "surah-1",
+      "layer": "high_yield",
+      "section_title": "The Path of Realized Models",
+      "content": "Al-Fatihah defines the straight path through lived human models rather than an abstract list. It contrasts those given grace with those who earned anger and those who went astray.",
+      "ayah_range": "5-7"
+    }
+  ],
+  "question_bank": [
+    {
+      "id": "q1000000-0000-0000-0000-000000000001",
+      "question_type": "card",
+      "concept_id": "c1000000-0000-0000-0000-000000000001",
+      "surah_id": "surah-1",
+      "ayah_range": "1-7",
+      "difficulty": 2,
+      "high_yieldness": 5,
+      "prompt": "What two-part structure defines Al-Fatihah's worship dynamic?",
+      "explanation_excerpt": "The surah first establishes Allah's attributes and authority, then shifts to the believer's exclusive worship and plea for guidance.",
+      "source_layer": "high_yield",
+      "source_excerpt_id": "b1000000-0000-0000-0000-000000000001"
+    },
+    {
+      "id": "q1000000-0000-0000-0000-000000000002",
+      "question_type": "mcq",
+      "concept_id": "c1000000-0000-0000-0000-000000000001",
+      "surah_id": "surah-1",
+      "ayah_range": "1-7",
+      "difficulty": 4,
+      "high_yieldness": 5,
+      "prompt": "How does Al-Fatihah primarily organize its message?",
+      "explanation_excerpt": "Its structure moves from divine praise and sovereignty to servant dependence and request for guidance.",
+      "source_layer": "high_yield",
+      "source_excerpt_id": "b1000000-0000-0000-0000-000000000001"
+    },
+    {
+      "id": "q1000000-0000-0000-0000-000000000003",
+      "question_type": "card",
+      "concept_id": "c1000000-0000-0000-0000-000000000002",
+      "surah_id": "surah-1",
+      "ayah_range": "1-3",
+      "difficulty": 3,
+      "high_yieldness": 4,
+      "prompt": "What is the distinction being taught by the paired names Ar-Rahman and Ar-Rahim in Al-Fatihah?",
+      "explanation_excerpt": "The pairing teaches mercy in two registers: vast and all-encompassing mercy, and specific, enduring mercy.",
+      "source_layer": "high_yield",
+      "source_excerpt_id": "b1000000-0000-0000-0000-000000000002"
+    },
+    {
+      "id": "q1000000-0000-0000-0000-000000000004",
+      "question_type": "mcq",
+      "concept_id": "c1000000-0000-0000-0000-000000000002",
+      "surah_id": "surah-1",
+      "ayah_range": "1-3",
+      "difficulty": 3,
+      "high_yieldness": 4,
+      "prompt": "Why does Al-Fatihah pair Ar-Rahman and Ar-Rahim after declaring Allah's lordship?",
+      "explanation_excerpt": "The pairing shows that His lordship is not presented as bare power but as power exercised with mercy.",
+      "source_layer": "high_yield",
+      "source_excerpt_id": "b1000000-0000-0000-0000-000000000002"
+    },
+    {
+      "id": "q1000000-0000-0000-0000-000000000005",
+      "question_type": "card",
+      "concept_id": "c1000000-0000-0000-0000-000000000003",
+      "surah_id": "surah-1",
+      "ayah_range": "5-7",
+      "difficulty": 2,
+      "high_yieldness": 5,
+      "prompt": "How does Al-Fatihah define the straight path in its closing verses?",
+      "explanation_excerpt": "It defines the path through human models: those granted grace, those who earned anger, and those who went astray.",
+      "source_layer": "high_yield",
+      "source_excerpt_id": "b1000000-0000-0000-0000-000000000003"
+    },
+    {
+      "id": "q1000000-0000-0000-0000-000000000006",
+      "question_type": "mcq",
+      "concept_id": "c1000000-0000-0000-0000-000000000003",
+      "surah_id": "surah-1",
+      "ayah_range": "5-7",
+      "difficulty": 4,
+      "high_yieldness": 5,
+      "prompt": "In Al-Fatihah, how is the straight path distinguished from the paths to be avoided?",
+      "explanation_excerpt": "The surah contrasts the way of those given grace with the paths of those who earned anger and those who went astray.",
+      "source_layer": "high_yield",
+      "source_excerpt_id": "b1000000-0000-0000-0000-000000000003"
+    }
+  ],
+  "mcq_options": [
+    {
+      "question_id": "q1000000-0000-0000-0000-000000000002",
+      "content": "It moves from divine praise to petition for guidance.",
+      "is_correct": true
+    },
+    {
+      "question_id": "q1000000-0000-0000-0000-000000000002",
+      "content": "It mainly lays out legal rulings for communal governance.",
+      "is_correct": false
+    },
+    {
+      "question_id": "q1000000-0000-0000-0000-000000000002",
+      "content": "It centers on a chronological narrative of earlier prophets.",
+      "is_correct": false
+    },
+    {
+      "question_id": "q1000000-0000-0000-0000-000000000002",
+      "content": "It is primarily a detailed sequence of end-times punishments.",
+      "is_correct": false
+    },
+    {
+      "question_id": "q1000000-0000-0000-0000-000000000004",
+      "content": "To show that His lordship is presented through encompassing mercy and enduring mercy, not bare power alone.",
+      "is_correct": true
+    },
+    {
+      "question_id": "q1000000-0000-0000-0000-000000000004",
+      "content": "To show that accountability on the Day of Judgment is no longer relevant once mercy is mentioned.",
+      "is_correct": false
+    },
+    {
+      "question_id": "q1000000-0000-0000-0000-000000000004",
+      "content": "To provide a purely poetic repetition with no conceptual distinction.",
+      "is_correct": false
+    },
+    {
+      "question_id": "q1000000-0000-0000-0000-000000000004",
+      "content": "To limit divine mercy only to those who have never sinned.",
+      "is_correct": false
+    },
+    {
+      "question_id": "q1000000-0000-0000-0000-000000000006",
+      "content": "By contrasting those given grace with those who earned anger and those who went astray.",
+      "is_correct": true
+    },
+    {
+      "question_id": "q1000000-0000-0000-0000-000000000006",
+      "content": "By listing a full code of legal and dietary rules.",
+      "is_correct": false
+    },
+    {
+      "question_id": "q1000000-0000-0000-0000-000000000006",
+      "content": "By focusing only on descriptions of Paradise and Hellfire.",
+      "is_correct": false
+    },
+    {
+      "question_id": "q1000000-0000-0000-0000-000000000006",
+      "content": "By reducing guidance to a purely inward mystical state without historical models.",
+      "is_correct": false
+    }
+  ]
+}

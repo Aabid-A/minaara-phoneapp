@@ -1,0 +1,17 @@
+{
+  "accent": "#783447",
+  "ink": "#29282d",
+  "muted": "#716b70",
+  "page": "#fafaf8",
+  "surface": "#f5f4f3",
+  "white": "#ffffff",
+  "line": "#e5e1e2",
+  "control-border": "#d5ced1",
+  "brass": "#9b8056",
+  "brass-ink": "#78613d",
+  "success": "#387256",
+  "progress": "#526d86",
+  "map-concept": "#6a8290",
+  "map-ayah": "#8a7998",
+  "recovery": "#b96a55"
+}
